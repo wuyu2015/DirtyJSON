@@ -1,0 +1,36 @@
+{
+  "name": "@wu__yu/DirtyJSON",
+  "private": false,
+  "version": "0.0.1",
+  "description": "DirtyJSON is a Node.js library designed for parsing and fixing non-standard JSON data in this uncertain world.",
+  "homepage": "https://github.com/wuyu2015/DirtyJSON",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuyu2015/DirtyJSON.git"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "JSON",
+    "dirty",
+    "parse",
+    "format",
+    "formatter",
+    "validate",
+    "validation",
+    "invalid",
+    "fix",
+    "RFC-8259",
+    "RFC-7259",
+    "RFC-4627",
+    "ECMA-404"
+  ],
+  "author": "wuyu",
+  "license": "MIT",
+  "dependencies": {
+    "json5": "^2.2.3"
+  }
+}
