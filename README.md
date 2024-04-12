@@ -17,13 +17,13 @@ DirtyJSON 依赖项目 [JSON5](https://github.com/json5/json5) ，仅在此基�
 ## Installation
 
 ```bash
-npm install @wu__yu/DirtyJSON
+npm install @wu__yu/dirtyjson
 ```
 
 ## Usage
 
 ```javascript
-import DirtyJSON from '@wu__yu/DirtyJSON';
+import DirtyJSON from '@wu__yu/dirtyjson';
 
 console.log(DirtyJSON.parse('{"key"：“value"】'));
 ```

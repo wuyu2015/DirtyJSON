@@ -1,5 +1,5 @@
 {
-  "name": "@wu__yu/DirtyJSON",
+  "name": "@wu__yu/dirtyjson",
   "private": false,
   "version": "0.0.1",
   "description": "DirtyJSON is a Node.js library designed for parsing and fixing non-standard JSON data in this uncertain world.",
