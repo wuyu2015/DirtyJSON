@@ -1,7 +1,9 @@
+import fix from './lib/fix.js';
 import parse from './lib/parse.js';
 
 const DirtyJSON = {
-    parse
+    fix,
+    parse,
 };
 
 export default DirtyJSON;
