@@ -10,10 +10,10 @@ function testFix() {
     assert.strictEqual(fix('{"a":: 1}'), '{"a":1}');
     assert.strictEqual(fix('{"a": 1]'), '{"a":1}');
     assert.strictEqual(fix('{"a": 1, {"b": 2]]'), '{"a":1,{"b":2}}');
-    assert.strictEqual(fix('{,"a":, 1,,, {,"b": 2]]'), '{"a":1,{"b":2}}');
+    assert.strictEqual(fix('{,,,"a",,:, 1,,, {,,,"b",: 2,,,],,,],,,'), '{"a":1,{"b":2}}');
     assert.strictEqual(fix('{"a": 1, b: [2, “3":}]'), '{"a":1,b:[2,"3"]}');
     assert.strictEqual(fix('{"a": 1, b:: [2, “3":}] // this is a comment'), '{"a":1,b:[2,"3"]}');
-    assert.strictEqual(fix('{"key":：“value"】// this is a comment'), '{"key":"value"}');
+    assert.strictEqual(fix('{,"key":： “value"，】, // this is a comment'), '{"key":"value"}');
 }
 
 testFix();

@@ -24,7 +24,7 @@ npm install @wu__yu/dirtyjson
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
 
-console.log(DirtyJSON.parse('{"key":：“value"】// this is a comment')); // Output: {"key":"value"}
+console.log(DirtyJSON.parse('{,"key":： “value"，】,// this is an abnormal JSON')); // Output: {"key":"value"}
 ```
 
 ## License
