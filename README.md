@@ -7,7 +7,7 @@ Douglas Crockford created and promoted the JSON format with the intention of pro
 
 DirtyJSON 可以为你解析非法的 JSON 数据。
 
-Douglas Crockford 创建和推广 JSON 格式的初衷是提供一种严格、易用、统一的数据格式，语法错误等是不被允许的，使用程序输出的 JSON 也完美无暇（这本来就不应该是手写的格式），直到人工智能 ChatGPT 出现，让它输出 JSON 的时候，在我已有的数据看来，8 万次对话有 4000 次输出了错误格式的 JSON，DirtyJSON 试图修复一些 AI 生成 JSON 的错误。
+Douglas Crockford 创建和推广 JSON 格式的初衷是提供一种严格、易用、统一的数据格式，语法错误等是不被允许的。通过程序生成的 JSON 完美无暇（这本来就不应该是手写的格式），直到人工智能 ChatGPT 出现，让它输出 JSON 的时候，在我已有的数据看来，8 万次对话有 4000 次输出了错误格式的 JSON，DirtyJSON 试图修复一些 AI 生成 JSON 的错误。
 
 ## Installation
 
@@ -20,7 +20,8 @@ npm install @wu__yu/dirtyjson
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
 
-console.log(DirtyJSON.fix('},{,"key":： “value"，】, // this is an abnormal JSON')); // Output: {"key":"value"}
+console.log(DirtyJSON.fix('},{,"key":： “value"，】, // this is an abnormal JSON'));
+// Output: {"key":"value"}
 ```
 
 ## License
