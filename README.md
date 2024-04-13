@@ -35,6 +35,9 @@ function testFix() {
     assert.strictEqual(fix(''), '');
     assert.strictEqual(fix('{}'), '{}');
     assert.strictEqual(fix('[]'), '[]');
+    assert.strictEqual(fix('True'), 'true');
+    assert.strictEqual(fix('falSe'), 'false');
+    assert.strictEqual(fix('Null'), 'null');
     assert.strictEqual(fix('{'), '');
     assert.strictEqual(fix('}'), '');
     assert.strictEqual(fix('['), '');
@@ -45,7 +48,7 @@ function testFix() {
     assert.strictEqual(fix("{a: 1}"), '{"a":1}');
     assert.strictEqual(fix('{"a":: 1}'), '{"a":1}');
     assert.strictEqual(fix('{a: 1, c: d}'), '{"a":1,"c":"d"}');
-    assert.strictEqual(fix('[1, 2, 3, "a", "b", "c", abc,]'), '[1,2,3,"a","b","c","abc"]');
+    assert.strictEqual(fix('[1, 2, 3, "a", "b", "c", abc, TrUe, False, NULL, 1.23e10, {1:2},]'), '[1,2,3,"a","b","c","abc",true,false,null,1.23e10,{"1":2}]');
     assert.strictEqual(fix('[1, 2, 3, a, `b`, c]'), '[1,2,3,"a","b","c"]');
     assert.strictEqual(fix('[1, 2, 3, "a", {b: "c"}]'), '[1,2,3,"a",{"b":"c"}]');
     assert.strictEqual(fix('{"a": 1，\'b\': 2, `c`: 3, “d”: 4, ‘e’: 5, 「f」：6, ·g·: 7}'), '{"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7}');
