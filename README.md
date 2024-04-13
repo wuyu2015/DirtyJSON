@@ -20,7 +20,8 @@ npm install @wu__yu/dirtyjson
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
 
-console.log(DirtyJSON.fix('},{,key:： “value"，】, // this is an abnormal JSON'));
+const text = '},{,key:： “value"，】, // comment in JSON: this is an abnormal JSON';
+console.log(DirtyJSON.fix(text));
 // Output: {"key":"value"}
 ```
 
