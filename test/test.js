@@ -93,6 +93,18 @@ function testJsonDataWithMismatch() {
 }
 testJsonDataWithMismatch();
 
+function testUnfinishedJsonData() {
+    const unfinishedJsonData = `
+        {
+            "name": "John",
+            "age": 30,
+            "friends": [
+                "Alice",
+                "Bob",`;
+    assert.strictEqual(fix(unfinishedJsonData), '{"name":"John","age":30,"friends":["Alice","Bob"]}');
+}
+testUnfinishedJsonData();
+
 function testImproperlyWrittenJSON() {
     const improperlyWrittenJSON = '},{「a」:1,,b:[2,,“3”:},]},';
     assert.strictEqual(fix(improperlyWrittenJSON), '{"a":1,"b":[2,"3"]}');
