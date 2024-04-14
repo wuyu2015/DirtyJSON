@@ -53,6 +53,7 @@ console.log(DirtyJSON.fix('{"test": "each \n on \n new \n line"}'));
 `DirtyJSON` can handle `//` and `/* */` comments.
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const jsonDataWithComments = `
 {
     // This is a comment
@@ -73,6 +74,7 @@ console.log(fixedData);
 `DirtyJSON` can handle unnecessary `,`.
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const jsonDataWithCommas = `
 {
     "name": "John",
@@ -87,6 +89,7 @@ console.log(fixedData);
 `DirtyJSON` can handle misuse and mismatch of `{}`, `[]`.
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const jsonDataWithMismatch = `
 {
     "name": "John",
@@ -105,6 +108,7 @@ console.log(fixedData);
 `DirtyJSON` can handle improperly written symbols.
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const improperlyWrittenJSON = '},{「a」:1,,b:[2,,“3”:},]},';
 const fixedData = DirtyJSON.fix(jsonDataWithCommas);
 console.log(fixedData);
@@ -169,6 +173,7 @@ console.log(DirtyJSON.fix('{"test": "each \n on \n new \n line"}'));
 在 JSON 内部随意书写单行 `//` 和多行 `/* */` 注释：
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const jsonDataWithComments = `
 {
     // This is a comment
@@ -189,6 +194,7 @@ console.log(fixedData);
 自动删除最后一个逗号 `,`：
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const jsonDataWithCommas = `
 {
     "name": "John",
@@ -203,6 +209,7 @@ console.log(fixedData);
 `DirtyJSON` 可以处理不匹配的 `{}`, `[]`：
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const jsonDataWithCommas = `
 {
     "name": "John",
@@ -221,6 +228,7 @@ console.log(fixedData);
 让事情更混乱一些：
 
 ```javascript
+import DirtyJSON from '@wu__yu/dirtyjson';
 const improperlyWrittenJSON = '},{「a」:1,,b:[2,,“3”:},]},';
 const fixedData = DirtyJSON.fix(jsonDataWithCommas);
 console.log(fixedData);
