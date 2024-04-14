@@ -17,7 +17,7 @@ function testFix() {
     assert.strictEqual(fix("{'a': 1}"), '{"a":1}');
     assert.strictEqual(fix("{'\"a\"': 1}"), '{"\\"a\\"":1}');
     assert.strictEqual(fix('{""a"": 1}'), '{"\\"a\\"":1}');
-    assert.strictEqual(fix('{\'an "example" word\': 1}'), '{"an \\"example\\" word":1}');
+    assert.strictEqual(fix('{\'an "example"\t\b\f\r\n word\': 1}'), '{"an \\"example\\"\\t\\n word":1}');
     assert.strictEqual(fix('{"an "example" word": 1}'), '{"an \\"example\\" word":1}');
     assert.strictEqual(fix("{a: 1}"), '{"a":1}');
     assert.strictEqual(fix('{"a":: 1}'), '{"a":1}');
