@@ -72,7 +72,7 @@ console.log(fixedData);
 // output: {"name":"John","age":30}
 ```
 
-`DirtyJSON` can handle unnecessary `,`.
+`DirtyJSON` can handle trailing comma `,`.
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
