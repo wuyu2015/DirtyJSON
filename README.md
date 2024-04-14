@@ -21,9 +21,9 @@ npm install @wu__yu/dirtyjson
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
 
-const text = '},{,key:： “value",】， // comment in JSON: this is an abnormal JSON';
+const text = '},{,key:：/*multiline\ncomment\nhere*/ “//value",】， // this is an abnormal JSON';
 console.log(DirtyJSON.fix(text));
-// Output: {"key":"value"}
+// Output: {"key":"//value"}
 ```
 
 Here's the test.js file in the project:
@@ -65,7 +65,7 @@ function testFix() {
     assert.strictEqual(fix('{,,,"a",,:, 1,,, {,,,"b",: 2,,,],,,],,,'), '{"a":1,{"b":2}}');
     assert.strictEqual(fix('{"a": 1, b: [2, “3”:}]'), '{"a":1,"b":[2,"3"]}');
     assert.strictEqual(fix('{"a": 1, b:: [2, “3":}] // this is a comment'), '{"a":1,"b":[2,"3"]}');
-    assert.strictEqual(fix('},{,key:： “value",】， // comment in JSON: this is an abnormal JSON'), '{"key":"value"}');
+    assert.strictEqual(fix('},{,key:：/*multiline\ncomment\nhere*/ “//value",】， // this is an abnormal JSON'), '{"key":"//value"}');
 }
 testFix();
 ```
