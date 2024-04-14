@@ -8,7 +8,7 @@ Douglas Crockford created and promoted the JSON format with the intention of pro
 DirtyJSON provides the following automatic repair features:
 
 1. Automatically removes `//` and `/* */` comments;
-2. Automatically removes unnecessary `,`;
+2. Automatically removes the trailing comma `,`;
 3. Automatically corrects misuse and mismatch of `{}`, `[]`;
 4. Automatically adds quotes to keys and values (except for numbers and `true`, `false`, `null`, of course);
 5. Automatically escapes unescaped quotes inside quotes, for example: `["quotes in "quotes" in quotes"]` to `["quotes in \"quotes\" in quotes"]`;
@@ -72,7 +72,7 @@ console.log(fixedData);
 // output: {"name":"John","age":30}
 ```
 
-`DirtyJSON` can handle trailing comma `,`.
+`DirtyJSON` can handle the trailing comma `,`.
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -149,7 +149,7 @@ Douglas Crockford 创建和推广 JSON 格式的初衷是提供一种严格、�
 DirtyJSON 提供以下自动修复功能：
 
 1. 自动删除 `//` 和 `/* */` 注释；
-2. 自动删除不必要的 `,`；
+2. 自动删除末尾的 `,`；
 3. 自动纠正 `{}`, `[]` 的乱写和不匹配问题；
 4. 自动为键和值添加引号（当然，除了数字和 `true`, `false`, `null`)；
 5. 自动转义引号内未转义的引号，例如：`["quotes in "quotes" in quotes"]` 转为 `["quotes in \"quotes\" in quotes"]`；
