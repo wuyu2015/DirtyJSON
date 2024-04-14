@@ -119,6 +119,10 @@ console.log(fixedData);
 
 MIT License
 
+---
+
+Simplified Chinese introduction:
+
 # 超强纠错小霸王 JSON 解析器
 
 DirtyJSON 可以为你解析非法的 JSON 数据。
