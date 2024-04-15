@@ -9,6 +9,9 @@ function testFix() {
     assert.strictEqual(fix('FalSE'), 'false');
     assert.strictEqual(fix('nULl'), 'null');
     assert.strictEqual(fix('{'), '');
+    assert.strictEqual(fix('{  '), '');
+    assert.strictEqual(fix('  {'), '');
+    assert.strictEqual(fix('  {  '), '');
     assert.strictEqual(fix('}'), '');
     assert.strictEqual(fix('['), '');
     assert.strictEqual(fix(']'), '');
@@ -24,7 +27,7 @@ function testFix() {
     assert.strictEqual(fix('{a: 1, c: d}'), '{"a":1,"c":"d"}');
     assert.strictEqual(fix(
         '[1, 2, 3, "a", "b", "c", abc, TrUe, False, NULL, 1.23e10, 123abc, { 123:123 },]'),
-        '[1,2,3,"a","b","c","abc",true,false,null,1.23e10,"123abc",{"123":123}]');
+        '[1,2,3,"a","b","c","abc",true,false,null,12300000000,"123abc",{"123":123}]');
     assert.strictEqual(fix('[1, 2, 3, a, `b`, c]'), '[1,2,3,"a","b","c"]');
     assert.strictEqual(fix('[1, 2, 3, "a", {b: "c"}]'), '[1,2,3,"a",{"b":"c"}]');
     assert.strictEqual(fix(
@@ -40,8 +43,42 @@ function testFix() {
 }
 testFix();
 
+function testValidJson() {
+    const validJsons = [
+        '',
+        'true',
+        'false',
+        'null',
+        '0',
+        '1',
+        '123',
+        '0.1',
+        '-1',
+        '-123',
+        '{}',
+        '{"a":1}',
+        '{"a":"b"}',
+        '{"a":"b","c":"d"}',
+        '[]',
+        '[1,2,3]',
+        '["a","b","c"]',
+    ];
+    for (const jsonString of validJsons) {
+        assert.strictEqual(fix(jsonString), jsonString);
+        assert.strictEqual(fix(` ${jsonString}`), jsonString);
+        assert.strictEqual(fix(`${jsonString} `), jsonString);
+        assert.strictEqual(fix(` ${jsonString} `), jsonString);
+        assert.strictEqual(fix(`${jsonString}\n`), jsonString);
+        assert.strictEqual(fix(`\n${jsonString}`), jsonString);
+        assert.strictEqual(fix(`\n${jsonString}\n`), jsonString);
+        assert.strictEqual(fix(`${jsonString}//comment`), jsonString);
+        assert.strictEqual(fix(`${jsonString}/*\ncomment\n*/`), jsonString);
+    }
+}
+testValidJson();
+
 function testFix1() {
-    assert.strictEqual(fix("{ test: 'this is a test', 'number': 1.23e10 }"), '{"test":"this is a test","number":1.23e10}');
+    assert.strictEqual(fix("{ test: 'this is a test', 'number': 1.23e10 }"), '{"test":"this is a test","number":12300000000}');
 }
 testFix1();
 

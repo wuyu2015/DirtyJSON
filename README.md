@@ -173,7 +173,7 @@ npm install @wu__yu/dirtyjson
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
 console.log(DirtyJSON.fix("{ test: 'this is a test', 'number': 1.23e10 }"));
-// 输出: {"test":"this is a test","number":1.23e10}
+// 输出: {"test":"this is a test","number":12300000000}
 ```
 
 处理字符串中嵌入的引号：
