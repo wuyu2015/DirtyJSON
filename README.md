@@ -16,6 +16,7 @@ DirtyJSON provides the following automatic repair features:
 7. Tolerantly supports illegal full-width symbols whenever possible;
 8. Automatically identifies and removes improperly written symbols;
 9. Automatically completes unfinished JSON by appending `]` or `}` at the end of the JSON structure.
+10. Normalize output of numeric strings.
 
 No more worries about poorly formatted JSON output by AI. You can even write JSON by hand recklessly.
 
@@ -32,7 +33,7 @@ npm install @wu__yu/dirtyjson
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
 console.log(DirtyJSON.fix("{ test: 'this is a test', 'number': 1.23e10 }"));
-// output: {"test":"this is a test","number":1.23e10}
+// output: {"test":"this is a test","number":12300000000}
 ```
 
 `DirtyJSON` can handle embedded quotes in strings.
@@ -156,7 +157,8 @@ DirtyJSON 提供以下自动修复功能：
 6. 将 `true`、`false`、`null` 统一转换为小写；
 7. 尽可能宽容地支持非法的全角符号；
 8. 自动识别并删除错误写入的符号；
-9. 通过在结尾处添加 `]` 或 `}` 自动补全未完成的 JSON 结构。
+9. 通过在结尾处添加 `]` 或 `}` 自动补全未完成的 JSON 结构；
+10. 规范化数字字符串。
 
 再也不怕 AI 输出的 JSON 乱写一气了。你也可以用手写的方式乱写 JSON 了。
 
@@ -168,7 +170,7 @@ npm install @wu__yu/dirtyjson
 
 ## 示例
 
-不写引号或写为单引号：
+不写引号或写为单引号。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -176,7 +178,7 @@ console.log(DirtyJSON.fix("{ test: 'this is a test', 'number': 1.23e10 }"));
 // 输出: {"test":"this is a test","number":12300000000}
 ```
 
-处理字符串中嵌入的引号：
+处理字符串中嵌入的引号。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -192,7 +194,7 @@ console.log(DirtyJSON.fix('{"test": "each \n on \n new \n line"}'));
 // 输出: {"test":"each \n on \n new \n line"}
 ```
 
-在 JSON 内部随意书写单行 `//` 和多行 `/* */` 注释：
+在 JSON 内部随意书写单行 `//` 和多行 `/* */` 注释。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -213,7 +215,7 @@ console.log(fixedData);
 // 输出: {"name":"小明","age":30}
 ```
 
-自动删除最后一个逗号 `,`：
+自动删除最后一个逗号 `,`。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -228,7 +230,7 @@ console.log(fixedData);
 // 输出: {"name":"小明","age":30}
 ```
 
-`DirtyJSON` 可以处理不匹配的 `{}`, `[]`：
+`DirtyJSON` 可以处理不匹配的 `{}`, `[]`。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -247,7 +249,7 @@ console.log(fixedData);
 // 输出: {"name":"小明","age":30,"friends":["小红","小刚"]}
 ```
 
-`DirtyJSON` 可以处理未完成的 JSON.
+`DirtyJSON` 可以处理未完成的 JSON。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
@@ -263,7 +265,7 @@ console.log(fixedData);
 // 输出: {"name":"小明","age":30,"friends":["小红","小刚"]}
 ```
 
-让事情更混乱一些：
+让事情更混乱一些。
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
