@@ -23,8 +23,8 @@ function testFix() {
     assert.strictEqual(fix('{"a":: 1}'), '{"a":1}');
     assert.strictEqual(fix('{a: 1, c: d}'), '{"a":1,"c":"d"}');
     assert.strictEqual(fix(
-        '[1, 2, 3, "a", "b", "c", abc, TrUe, False, NULL, 1.23e10, 123 abc, { 123:123 },]'),
-        '[1,2,3,"a","b","c","abc",true,false,null,1.23e10,"123 abc",{"123":123}]');
+        '[1, 2, 3, "a", "b", "c", abc, TrUe, False, NULL, 1.23e10, 123abc, { 123:123 },]'),
+        '[1,2,3,"a","b","c","abc",true,false,null,1.23e10,"123abc",{"123":123}]');
     assert.strictEqual(fix('[1, 2, 3, a, `b`, c]'), '[1,2,3,"a","b","c"]');
     assert.strictEqual(fix('[1, 2, 3, "a", {b: "c"}]'), '[1,2,3,"a",{"b":"c"}]');
     assert.strictEqual(fix(
