@@ -98,6 +98,11 @@ function testNumbers() {
 }
 testNumbers();
 
+function testIncomplete() {
+    assert.strictEqual(fix('{a:'), '{"a":null}');
+}
+testIncomplete();
+
 function testFix1() {
     assert.strictEqual(fix("{ test: 'this is a test', 'number': 1.23e10 }"), '{"test":"this is a test","number":12300000000}');
 }
