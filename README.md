@@ -77,13 +77,13 @@ console.log(fixedData);
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
-const jsonDataWithCommas = `
+const jsonDataWithTrailingCommas = `
 {
     "name": "John",
     "age": 30, // Notice this trailing comma
 }
 `;
-const fixedData = DirtyJSON.fix(jsonDataWithCommas);
+const fixedData = DirtyJSON.fix(jsonDataWithTrailingCommas);
 console.log(fixedData);
 // output: {"name":"John","age":30}
 ```
@@ -219,13 +219,13 @@ console.log(fixedData);
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
-const jsonDataWithCommas = `
+const jsonDataWithTrailingCommas = `
 {
     "name": "小明",
     "age": 30, // 注意这个逗号将被删除
 }
 `;
-const fixedData = DirtyJSON.fix(jsonDataWithCommas);
+const fixedData = DirtyJSON.fix(jsonDataWithTrailingCommas);
 console.log(fixedData);
 // 输出: {"name":"小明","age":30}
 ```
@@ -234,7 +234,7 @@ console.log(fixedData);
 
 ```javascript
 import DirtyJSON from '@wu__yu/dirtyjson';
-const jsonDataWithCommas = `
+const jsonDataWithMismatch = `
 {
     "name": "小明",
     "age": 30,
@@ -244,7 +244,7 @@ const jsonDataWithCommas = `
     } // 这里的 '}' 应该是 ']'
 】// 这里的 '】' 应该是 '}'
 `;
-const fixedData = DirtyJSON.fix(jsonDataWithCommas);
+const fixedData = DirtyJSON.fix(jsonDataWithMismatch);
 console.log(fixedData);
 // 输出: {"name":"小明","age":30,"friends":["小红","小刚"]}
 ```
