@@ -77,6 +77,21 @@ function testValidJson() {
 }
 testValidJson();
 
+function testNumbers() {
+    assert.strictEqual(fix('0'), '0');
+    assert.strictEqual(fix('1'), '1');
+    assert.strictEqual(fix('01'), '1');
+    assert.strictEqual(fix('0.10'), '0.1');
+    assert.strictEqual(fix('-0'), '0');
+    assert.strictEqual(fix('+0'), '0');
+    assert.strictEqual(fix('+1'), '1');
+    assert.strictEqual(fix('.1'), '0.1');
+    assert.strictEqual(fix('.0'), '0');
+    assert.strictEqual(fix('-.12'), '-0.12');
+    assert.strictEqual(fix('1.23e10'), '12300000000');
+}
+testNumbers();
+
 function testFix1() {
     assert.strictEqual(fix("{ test: 'this is a test', 'number': 1.23e10 }"), '{"test":"this is a test","number":12300000000}');
 }
@@ -104,16 +119,16 @@ function testJsonDataWithComments() {
 }
 testJsonDataWithComments();
 
-function testJsonDataWithCommas() {
-    const jsonDataWithComments = `
+function testJsonDataWithTrailingCommas() {
+    const jsonDataWithTrailingCommas = `
         {
             "name": "John",
             "age": 30, // Notice this trailing comma
         }
     `;
-    assert.strictEqual(fix(jsonDataWithComments), '{"name":"John","age":30}');
+    assert.strictEqual(fix(jsonDataWithTrailingCommas), '{"name":"John","age":30}');
 }
-testJsonDataWithCommas();
+testJsonDataWithTrailingCommas();
 
 function testJsonDataWithMismatch() {
     const jsonDataWithMismatch = `
