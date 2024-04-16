@@ -30,6 +30,7 @@ function testFixChar1() {
 testFixChar1();
 
 function testFixChar2() {
+    // start from {
     assert.strictEqual(fix('{{'), '{}');
     assert.strictEqual(fix('{}'), '{}');
     assert.strictEqual(fix('{]'), '{}');
@@ -41,10 +42,102 @@ function testFixChar2() {
     // assert.strictEqual(fix('{0'), '{"0":null}'); // TODO
     // assert.strictEqual(fix('{1'), '{"1":null}'); // TODO
     // assert.strictEqual(fix('{a'), '{"a":null}'); // TODO
+    // start from [
+    assert.strictEqual(fix('[{'), '[{}]');
     assert.strictEqual(fix('[}'), '[]');
     assert.strictEqual(fix('[]'), '[]');
-    assert.strictEqual(fix('[['), '[[]]');
+    assert.strictEqual(fix('[:'), '[]');
+    assert.strictEqual(fix('[,'), '[]');
+    assert.strictEqual(fix('["'), '[]');
+    assert.strictEqual(fix("['"), '[]');
+    assert.strictEqual(fix('[`'), '[]');
+    assert.strictEqual(fix('[0'), '[0]');
+    assert.strictEqual(fix('[9'), '[9]');
+    assert.strictEqual(fix('[-'), '["-"]');
+    assert.strictEqual(fix('[.'), '["."]');
+    assert.strictEqual(fix('[a'), '["a"]');
+    assert.strictEqual(fix('[【'), '[[]]');
+    assert.strictEqual(fix('[：'), '[]');
+    // start from }
+    assert.strictEqual(fix('}{'), '{}');
     assert.strictEqual(fix('}}'), '');
+    assert.strictEqual(fix('}]'), '');
+    assert.strictEqual(fix('}:'), '');
+    assert.strictEqual(fix('},'), '');
+    assert.strictEqual(fix('}"'), '');
+    assert.strictEqual(fix("}'"), '');
+    assert.strictEqual(fix('}`'), '');
+    assert.strictEqual(fix('}0'), '0');
+    assert.strictEqual(fix('}9'), '9');
+    assert.strictEqual(fix('}-'), '"-"');
+    assert.strictEqual(fix('}.'), '"."');
+    assert.strictEqual(fix('}a'), '"a"');
+    assert.strictEqual(fix('}【'), '[]');
+    assert.strictEqual(fix('}：'), '');
+    // start from ]
+    assert.strictEqual(fix(']{'), '{}');
+    assert.strictEqual(fix(']}'), '');
+    assert.strictEqual(fix(']]'), '');
+    assert.strictEqual(fix(']:'), '');
+    assert.strictEqual(fix('],'), '');
+    assert.strictEqual(fix(']"'), '');
+    assert.strictEqual(fix("}'"), '');
+    assert.strictEqual(fix(']`'), '');
+    assert.strictEqual(fix(']0'), '0');
+    assert.strictEqual(fix(']9'), '9');
+    assert.strictEqual(fix(']-'), '"-"');
+    assert.strictEqual(fix('].'), '"."');
+    assert.strictEqual(fix(']a'), '"a"');
+    assert.strictEqual(fix(']【'), '[]');
+    assert.strictEqual(fix(']：'), '');
+    // start from :
+    assert.strictEqual(fix(':{'), '{}');
+    assert.strictEqual(fix(':}'), '');
+    assert.strictEqual(fix(':]'), '');
+    assert.strictEqual(fix('::'), '');
+    assert.strictEqual(fix(':,'), '');
+    assert.strictEqual(fix(':"'), '');
+    assert.strictEqual(fix("}'"), '');
+    assert.strictEqual(fix(':`'), '');
+    assert.strictEqual(fix(':0'), '0');
+    assert.strictEqual(fix(':9'), '9');
+    assert.strictEqual(fix(':-'), '"-"');
+    assert.strictEqual(fix(':.'), '"."');
+    assert.strictEqual(fix(':a'), '"a"');
+    assert.strictEqual(fix(':【'), '[]');
+    assert.strictEqual(fix(':：'), '');
+    // start from ,
+    assert.strictEqual(fix(',{'), '{}');
+    assert.strictEqual(fix(',}'), '');
+    assert.strictEqual(fix(',]'), '');
+    assert.strictEqual(fix(',:'), '');
+    assert.strictEqual(fix(',,'), '');
+    assert.strictEqual(fix(',"'), '');
+    assert.strictEqual(fix("}'"), '');
+    assert.strictEqual(fix(',`'), '');
+    assert.strictEqual(fix(',0'), '0');
+    assert.strictEqual(fix(',9'), '9');
+    assert.strictEqual(fix(',-'), '"-"');
+    assert.strictEqual(fix(',.'), '"."');
+    assert.strictEqual(fix(',a'), '"a"');
+    assert.strictEqual(fix(',【'), '[]');
+    assert.strictEqual(fix(',：'), '');
+    // start from "
+    assert.strictEqual(fix('"{'), '"{"');
+    assert.strictEqual(fix('"}'), '"}"');
+    assert.strictEqual(fix('"]'), '"]"');
+    assert.strictEqual(fix('":'), '":"');
+    assert.strictEqual(fix('",'), '","');
+    assert.strictEqual(fix('""'), '""');
+    assert.strictEqual(fix('"\''), '""');
+    assert.strictEqual(fix('"`'), '""');
+    assert.strictEqual(fix('"0'), '"0"');
+    assert.strictEqual(fix('"9'), '"9"');
+    assert.strictEqual(fix('"-'), '"-"');
+    assert.strictEqual(fix('".'), '"."');
+    assert.strictEqual(fix('"a'), '"a"');
+    assert.strictEqual(fix('"【'), '"【"');
+    assert.strictEqual(fix('"：'), '"："');
 }
 testFixChar2();
 
