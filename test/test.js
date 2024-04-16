@@ -18,6 +18,13 @@ function testFix() {
     assert.strictEqual(fix(':'), '');
     assert.strictEqual(fix('{{}}'), '{}');
     assert.strictEqual(fix('[[]]'), '[[]]');
+    assert.strictEqual(fix('[[], []]'), '[[],[]]');
+    assert.strictEqual(fix('{[]}'), '{}');
+    assert.strictEqual(fix('{[], []}'), '{}');
+    assert.strictEqual(fix('{[}'), '{}');
+    assert.strictEqual(fix('{]}'), '{}');
+    assert.strictEqual(fix('{:}'), '{}');
+    assert.strictEqual(fix('{,}'), '{}');
     assert.strictEqual(fix('{"a": 1}'), '{"a":1}');
     assert.strictEqual(fix("{'a': 1}"), '{"a":1}');
     assert.strictEqual(fix("{`a`: 1}"), '{"a":1}');
