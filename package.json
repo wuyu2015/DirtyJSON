@@ -1,7 +1,7 @@
 {
   "name": "@wu__yu/dirtyjson",
   "private": false,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "DirtyJSON is a Node.js library designed for fixing and parsing invalid JSON data. 超强纠错 JSON 解析器。",
   "homepage": "https://github.com/wuyu2015/DirtyJSON",
   "repository": {

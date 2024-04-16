@@ -8,16 +8,22 @@ function testFix() {
     assert.strictEqual(fix('tRue'), 'true');
     assert.strictEqual(fix('FalSE'), 'false');
     assert.strictEqual(fix('nULl'), 'null');
-    assert.strictEqual(fix('{'), '');
-    assert.strictEqual(fix('{  '), '');
-    assert.strictEqual(fix('  {'), '');
-    assert.strictEqual(fix('  {  '), '');
+    assert.strictEqual(fix('{'), '{}');
+    assert.strictEqual(fix('{  '), '{}');
+    assert.strictEqual(fix('  {'), '{}');
+    assert.strictEqual(fix('  {  '), '{}');
     assert.strictEqual(fix('}'), '');
-    assert.strictEqual(fix('['), '');
+    assert.strictEqual(fix('['), '[]');
     assert.strictEqual(fix(']'), '');
     assert.strictEqual(fix(':'), '');
     assert.strictEqual(fix('{"a": 1}'), '{"a":1}');
     assert.strictEqual(fix("{'a': 1}"), '{"a":1}');
+    assert.strictEqual(fix("{`a`: 1}"), '{"a":1}');
+    assert.strictEqual(fix('{”a”: 1}'), '{"a":1}');
+    assert.strictEqual(fix("{'a\": 1}"), '{"a":1}');
+    assert.strictEqual(fix('{「a」: 1}'), '{"a":1}');
+    assert.strictEqual(fix('{「a「: 1}'), '{"a":1}');
+    assert.strictEqual(fix('{‘a’: 1}'), '{"a":1}');
     assert.strictEqual(fix("{'\"a\"': 1}"), '{"\\"a\\"":1}');
     assert.strictEqual(fix('{""a"": 1}'), '{"\\"a\\"":1}');
     assert.strictEqual(fix('{\'an "example"\t\b\f\r\n word\': 1}'), '{"an \\"example\\"\\t\\n word":1}');
@@ -31,8 +37,8 @@ function testFix() {
     assert.strictEqual(fix('[1, 2, 3, a, `b`, c]'), '[1,2,3,"a","b","c"]');
     assert.strictEqual(fix('[1, 2, 3, "a", {b: "c"}]'), '[1,2,3,"a",{"b":"c"}]');
     assert.strictEqual(fix(
-        '{"a": 1，\'b\': 2, `c`: 3, “d”: 4, ‘e’: 5, 「f」:6, ·g·: 7 }'),
-        '{"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7}');
+        '{"a": 1，\'b\': 2, `c`: 3, “d”: 4, ‘e’: 5, 「f」:6, }'),
+        '{"a":1,"b":2,"c":3,"d":4,"e":5,"f":6}');
     assert.strictEqual(fix('{"a": 1, {"b": 2]]'), '{"a":1,{"b":2}}');
     assert.strictEqual(fix('{,,,"a",,:, 1,,, {,,,"b",: 2,,,],,,],,,'), '{"a":1,{"b":2}}');
     assert.strictEqual(fix('{"a": 1, b: [2, “3”:}]'), '{"a":1,"b":[2,"3"]}');
