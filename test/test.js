@@ -1,14 +1,57 @@
 import assert from 'assert';
 import fix from "../lib/fix.js";
 
-function testFix() {
+function testFixChar0() {
     assert.strictEqual(fix(''), '');
+}
+testFixChar0();
+
+function testFixChar1() {
+    assert.strictEqual(fix(' '), '');
+    assert.strictEqual(fix('{'), '{}');
+    assert.strictEqual(fix('['), '[]');
+    assert.strictEqual(fix('}'), '');
+    assert.strictEqual(fix(']'), '');
+    assert.strictEqual(fix(':'), '');
+    assert.strictEqual(fix(','), '');
+    assert.strictEqual(fix('"'), '');
+    assert.strictEqual(fix("'"), '');
+    assert.strictEqual(fix("`"), '');
+    assert.strictEqual(fix('0'), '0');
+    assert.strictEqual(fix('9'), '9');
+    assert.strictEqual(fix('-'), '"-"');
+    assert.strictEqual(fix('.'), '"."');
+    assert.strictEqual(fix('a'), '"a"');
+    assert.strictEqual(fix('e'), '"e"');
+    assert.strictEqual(fix('【'), '[]');
+    assert.strictEqual(fix('】'), '');
+    assert.strictEqual(fix('：'), '');
+}
+testFixChar1();
+
+function testFixChar2() {
+    assert.strictEqual(fix('{{'), '{}');
     assert.strictEqual(fix('{}'), '{}');
+    assert.strictEqual(fix('{]'), '{}');
+    assert.strictEqual(fix('{:'), '{}');
+    assert.strictEqual(fix('{,'), '{}');
+    assert.strictEqual(fix('{"'), '{}');
+    assert.strictEqual(fix("{'"), '{}');
+    assert.strictEqual(fix('{`'), '{}');
+    // assert.strictEqual(fix('{0'), '{"0":null}'); // TODO
+    // assert.strictEqual(fix('{1'), '{"1":null}'); // TODO
+    // assert.strictEqual(fix('{a'), '{"a":null}'); // TODO
+    assert.strictEqual(fix('[}'), '[]');
     assert.strictEqual(fix('[]'), '[]');
+    assert.strictEqual(fix('[['), '[[]]');
+    assert.strictEqual(fix('}}'), '');
+}
+testFixChar2();
+
+function testFix() {
     assert.strictEqual(fix('tRue'), 'true');
     assert.strictEqual(fix('FalSE'), 'false');
     assert.strictEqual(fix('nULl'), 'null');
-    assert.strictEqual(fix('{'), '{}');
     assert.strictEqual(fix('{  '), '{}');
     assert.strictEqual(fix('  {'), '{}');
     assert.strictEqual(fix('  {  '), '{}');
@@ -27,7 +70,7 @@ function testFix() {
     assert.strictEqual(fix('{,}'), '{}');
 
     assert.strictEqual(fix('{a:}'), '{"a":null}');
-    // assert.strictEqual(fix('{a:]'), '{"a":null}');
+    assert.strictEqual(fix('{a:]'), '{"a":null}');
 
     assert.strictEqual(fix('{"a": 1}'), '{"a":1}');
     assert.strictEqual(fix("{'a': 1}"), '{"a":1}');
