@@ -341,6 +341,27 @@ function testIncomplete() {
 }
 testIncomplete();
 
+function testComments() {
+    assert.strictEqual(fix('/'), '"/"');
+    assert.strictEqual(fix('//'), '');
+    assert.strictEqual(fix('//\na'), '"a"');
+    assert.strictEqual(fix('///'), '');
+    assert.strictEqual(fix('/ / /'), '"/ / /"');
+    assert.strictEqual(fix('//a'), '');
+    assert.strictEqual(fix('a//a'), '"a"');
+    assert.strictEqual(fix('{a:b}//a'), '{"a":"b"}');
+    assert.strictEqual(fix('/**/'), '');
+    assert.strictEqual(fix('/*abc'), ''); // This is strange
+    assert.strictEqual(fix('/*/'), ''); // This is strange
+}
+testComments();
+
+function testStrings() {
+    const s = '{"s":"The term \\"antiglare\\" is derived from the combination of \\"anti-\\" meaning against or opposed to, and \\"glare\\" referring to a harsh, bright light that causes discomfort. The concept originated in the field of optics and has since been applied to various industries to improve visual comfort."}';
+    assert.strictEqual(fix(s), s);
+}
+testStrings();
+
 function testFix1() {
     assert.strictEqual(fix("{ test: 'this is a test', 'number': 1.23e10 }"), '{"test":"this is a test","number":12300000000}');
 }
