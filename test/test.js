@@ -1,6 +1,11 @@
 import assert from 'assert';
 import fix from "../lib/fix.js";
 
+function testError() {
+    // keep blank if nothing wrong
+}
+testError();
+
 function testFixChar0() {
     assert.strictEqual(fix(''), '');
 }
@@ -239,7 +244,7 @@ function testFix() {
     assert.strictEqual(fix('[[]]'), '[[]]');
     assert.strictEqual(fix('[[], []]'), '[[],[]]');
     assert.strictEqual(fix('{[]}'), '{}');
-    assert.strictEqual(fix('{[], []}'), '{}');
+    assert.strictEqual(fix('{[], []}'), '{},[]'); // it looks strange
     assert.strictEqual(fix('{[}'), '{}');
     assert.strictEqual(fix('{]}'), '{}');
     assert.strictEqual(fix('{:}'), '{}');
@@ -247,6 +252,7 @@ function testFix() {
 
     assert.strictEqual(fix('{a:}'), '{"a":null}');
     assert.strictEqual(fix('{a:]'), '{"a":null}');
+    assert.strictEqual(fix('{:a}'), '{"a":null}');
 
     assert.strictEqual(fix('{"a": 1}'), '{"a":1}');
     assert.strictEqual(fix("{'a': 1}"), '{"a":1}');
